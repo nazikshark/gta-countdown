@@ -38,6 +38,9 @@
       color: var(--text);
       font-family: 'Manrope', sans-serif;
       -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .display {
@@ -98,6 +101,8 @@
       gap: 32px;
       font-size: 14px;
       color: var(--text-dim);
+      margin-left: auto;
+      margin-right: 64px;
     }
 
     .nav-links a:hover {
@@ -288,6 +293,8 @@
       grid-template-columns: 1fr 340px;
       gap: 32px;
       padding: 48px;
+      flex: 1;
+      width: 100%;
     }
 
     .section-head {
@@ -456,66 +463,6 @@
       margin-bottom: 16px;
     }
 
-    .notif-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .notif-row:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .notif-info .t {
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-
-    .notif-info .d {
-      font-size: 12px;
-      color: var(--text-faint);
-    }
-
-    .switch {
-      width: 38px;
-      height: 22px;
-      border-radius: 999px;
-      position: relative;
-      flex: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .switch.on {
-      background: var(--pink);
-    }
-
-    .switch.off {
-      background: rgba(184, 179, 214, 0.18);
-    }
-
-    .switch::after {
-      content: "";
-      position: absolute;
-      top: 2px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #fff;
-      transition: 0.2s;
-    }
-
-    .switch.on::after {
-      right: 2px;
-    }
-
-    .switch.off::after {
-      left: 2px;
-    }
-
     .fact-row {
       display: flex;
       justify-content: space-between;
@@ -551,35 +498,14 @@
       color: var(--text-dim);
     }
 
-    .cta-card {
-      background: linear-gradient(135deg, rgba(255, 46, 146, 0.14), rgba(123, 92, 250, 0.14));
-      border: 1px solid rgba(255, 46, 146, 0.3);
-    }
-
-    .cta-card p {
-      font-size: 13px;
-      color: var(--text-dim);
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-
-    .cta-btn {
-      display: block;
+    /* ===== FOOTER ===== */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 48px;
       text-align: center;
-      padding: 12px;
-      border-radius: 10px;
-      background: var(--pink);
-      color: #0B0A17;
-      font-weight: 800;
       font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-
-    .cta-btn:hover {
-      opacity: 0.9;
+      color: var(--text-faint);
+      background: var(--bg-2);
     }
 
     @media (max-width: 860px) {
@@ -620,6 +546,10 @@
       .news-thumb {
         height: 64px;
       }
+
+      .footer {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -639,7 +569,7 @@
       <a href="#" onclick="alert('Интерактивная карта появится позже');">Карта</a>
     </div>
     <div class="nav-right">
-      <div class="bell" id="bellBtn" title="Уведомления">🔔<span class="dot"></span></div>
+      <!-- <div class="bell" id="bellBtn" title="Уведомления">🔔<span class="dot"></span></div> -->
     </div>
   </nav>
 
@@ -741,38 +671,6 @@
 
     <aside class="sidebar">
       <div class="card">
-        <h3>Уведомления</h3>
-        <div class="notif-row">
-          <div class="notif-info">
-            <div class="t">Новые трейлеры</div>
-            <div class="d">Push сразу при публикации</div>
-          </div>
-          <div class="switch on" onclick="toggleSwitch(this)"></div>
-        </div>
-        <div class="notif-row">
-          <div class="notif-info">
-            <div class="t">Официальные новости</div>
-            <div class="d">Rockstar и Take-Two</div>
-          </div>
-          <div class="switch on" onclick="toggleSwitch(this)"></div>
-        </div>
-        <div class="notif-row">
-          <div class="notif-info">
-            <div class="t">Слухи и утечки</div>
-            <div class="d">Неподтверждённые источники</div>
-          </div>
-          <div class="switch off" onclick="toggleSwitch(this)"></div>
-        </div>
-        <div class="notif-row">
-          <div class="notif-info">
-            <div class="t">Открытие предзаказов</div>
-            <div class="d">Разовое уведомление</div>
-          </div>
-          <div class="switch on" onclick="toggleSwitch(this)"></div>
-        </div>
-      </div>
-
-      <div class="card">
         <h3>Факты о релизе</h3>
         <div class="fact-row"><span class="k">Дата</span><span class="v">19.11.2026</span></div>
         <div class="fact-row"><span class="k">Место действия</span><span class="v">Leonida / Vice City</span></div>
@@ -785,14 +683,12 @@
           </div>
         </div>
       </div>
-
-      <div class="card cta-card">
-        <h3 style="color:var(--text)">Не пропусти релиз</h3>
-        <p>Включи push-уведомления и получай счётчик прямо на экран блокировки.</p>
-        <div class="cta-btn" onclick="alert('Уведомления успешно подключены!')">Включить уведомления</div>
-      </div>
     </aside>
   </main>
+
+  <footer class="footer">
+    © 2026 game-countdown.pl | Created by nazikshark
+  </footer>
 
   <script>
     // 1. Живой таймер до 19 ноября 2026 года
@@ -824,13 +720,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // 2. Переключатели уведомлений (свитчеры)
-    function toggleSwitch(element) {
-      element.classList.toggle('on');
-      element.classList.toggle('off');
-    }
-
-    // 3. Фильтрация новостей
+    // 2. Фильтрация новостей
     function filterNews(category, btn) {
       // Переключаем активную кнопку в дизайне
       document.querySelectorAll('.section-head .filter').forEach(el => el.classList.remove('active-filter'));
@@ -847,7 +737,7 @@
       });
     }
 
-    // 4. Кнопка «Показать ещё новости»
+    // 3. Кнопка «Показать ещё новости»
     document.getElementById('loadMoreBtn').addEventListener('click', function () {
       const feed = document.getElementById('newsFeed');
       const newCard = document.createElement('article');
@@ -866,7 +756,7 @@
       this.style.display = 'none'; // Скрываем кнопку после загрузки
     });
 
-    // 5. Клик по колокольчику
+    // 4. Клик по колокольчику
     document.getElementById('bellBtn').addEventListener('click', function () {
       alert('У вас нет новых непрочитанных уведомлений.');
     });
